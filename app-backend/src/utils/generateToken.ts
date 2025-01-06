@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const SECRET_KEY = process.env.JWT_SECRET || 'secreta12345';
+const SECRET_KEY = process.env.JWT_SECRET || ''; 
 const EXPIRES_IN = '1h';
 
 export const generateToken = (userId: number): string => {
