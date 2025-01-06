@@ -5,7 +5,7 @@ import validateUser from '../middleware/validationMiddleware';
 
 const router = Router();
 
-router.post('/users', validateUser, UserController.createUser);
+router.post('/signup', validateUser, UserController.createUser);
 
 router.get('/users', authMiddleware, UserController.getAllUsers);
 

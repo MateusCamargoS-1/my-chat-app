@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/users', userRoutes);
+app.use('/api', userRoutes);
 app.use('/api/protected', authMiddleware, protectedRoutes);
 
 app.get('/', (req, res) => {
