@@ -7,7 +7,7 @@ import protectedRoutes from './routes/protectRoutes';
 
 dotenv.config();
 
-const app: Application = express();
+const app = express();
 
 app.use(cors());
 app.use(express.json());
