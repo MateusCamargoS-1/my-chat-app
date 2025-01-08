@@ -7,6 +7,8 @@ const router = Router();
 
 router.post('/signup', validateUser, UserController.createUser);
 
+router.post('/login', UserController.login);
+
 router.get('/users', authMiddleware, UserController.getAllUsers);
 
 router.get('/users/:userId', authMiddleware, UserController.getUserById);

@@ -57,29 +57,30 @@ class UserController {
 
       if (!user) {
         if (!res.headersSent) {
-          return res.status(404).json({ success: false, message: 'Usuário não encontrado' });
+          res.status(404).json({ success: false, message: 'Usuário não encontrado' });
         }
       }
 
       if (!user) {
-        return res.status(404).json({ message: 'Usuário não encontrado ou não autenticado.' });
+        res.status(404).json({ message: 'Usuário não encontrado ou não autenticado.' });
+        return;
       }
 
       const isPasswordValid = await comparePassword(password, user.password);
       if (!isPasswordValid) {
         if (!res.headersSent) {
-          return res.status(401).json({ success: false, message: 'Senha inválida' });
+          res.status(401).json({ success: false, message: 'Senha inválida' });
         }
       }
 
       if (!user) {
-        return res.status(404).json({ message: 'Usuário não encontrado ou não autenticado.' });
+        res.status(404).json({ message: 'Usuário não encontrado ou não autenticado.' });
       }
 
       const token = generateToken(user.id);
 
       if (!res.headersSent) {
-        return res.status(200).json({
+        res.status(200).json({
           success: true,
           message: 'Login bem-sucedido',
           data: { user, token },
@@ -87,7 +88,7 @@ class UserController {
       }
     } catch (error) {
       if (!res.headersSent) {
-        return res.status(500).json({ success: false, message: 'Erro no login', details: error });
+        res.status(500).json({ success: false, message: 'Erro no login', details: error });
       }
     }
   }
@@ -100,7 +101,7 @@ class UserController {
       }
     } catch (error) {
       if (!res.headersSent) {
-        res.status(500).json({ message: error });
+        res.status(500).json({ message: error});
       }
     }
   }
