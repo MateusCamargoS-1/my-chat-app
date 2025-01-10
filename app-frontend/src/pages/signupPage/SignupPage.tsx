@@ -5,7 +5,7 @@ import { setSignupData, setError } from "../../redux/signupSlice";
 import { RootState } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
-import './signup/signupPage.css';
+import './signupPage.css';
 
 const SignupPage: React.FC = () => {
   const dispatch = useDispatch();

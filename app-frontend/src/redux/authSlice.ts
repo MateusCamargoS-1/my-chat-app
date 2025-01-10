@@ -10,7 +10,6 @@ interface AuthState {
   token: string | null;
 }
 
-// Inicializa o estado com os dados salvos no localStorage (se existirem)
 const initialState: AuthState = {
   user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') as string) : null,
   token: localStorage.getItem('token') || null,
@@ -24,7 +23,6 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
 
-      // Salva no localStorage
       localStorage.setItem('user', JSON.stringify(action.payload.user));
       localStorage.setItem('token', action.payload.token);
     },
@@ -32,7 +30,6 @@ const authSlice = createSlice({
       state.user = null;
       state.token = null;
 
-      // Remove do localStorage
       localStorage.removeItem('user');
       localStorage.removeItem('token');
     },

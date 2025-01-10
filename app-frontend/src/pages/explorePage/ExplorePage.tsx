@@ -1,5 +1,5 @@
 import React from "react";
-import FooterMenu from "../components/FooterMenu";
+import FooterMenu from "../../components/FooterMenu";
 
 const ExplorePage: React.FC = () => {
   return (

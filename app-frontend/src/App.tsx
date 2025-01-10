@@ -1,8 +1,7 @@
-// App.tsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProfilePage from "./pages/profilePage/ProfilePage";
-import ContactsPage from "./pages/ContactPage";
-import ExplorePage from "./pages/ExplorePage";
+import ContactsPage from "./pages/contactPage/ContactPage";
+import ExplorePage from "./pages/explorePage/ExplorePage";
 import LoginPage from "./pages/loginPage/LoginPage";
 import SignupPage from "./pages/signupPage/SignupPage";
 import { useSelector } from "react-redux";

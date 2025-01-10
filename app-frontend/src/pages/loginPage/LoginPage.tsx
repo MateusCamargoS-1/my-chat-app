@@ -4,7 +4,7 @@ import { setUser as setAuthUser } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import { TextField, Button, Typography, Box } from "@mui/material";
 import api from "../../services/api";
-import "./LoginPage/loginPage.css";
+import "./loginPage.css";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");

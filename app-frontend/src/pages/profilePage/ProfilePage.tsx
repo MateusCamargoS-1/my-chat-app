@@ -18,6 +18,7 @@ const ProfilePage: React.FC = () => {
 
   const [openModal, setOpenModal] = useState(false);
   const [editData, setEditData] = useState({
+    id: user?.id || 0, 
     name: user?.name || "",
     email: user?.email || "",
     location: user?.location || "",
