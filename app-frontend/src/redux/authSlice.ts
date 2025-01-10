@@ -10,9 +10,10 @@ interface AuthState {
   token: string | null;
 }
 
+// Inicializa o estado com os dados salvos no localStorage (se existirem)
 const initialState: AuthState = {
-  user: null,
-  token: null,
+  user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') as string) : null,
+  token: localStorage.getItem('token') || null,
 };
 
 const authSlice = createSlice({
@@ -22,10 +23,18 @@ const authSlice = createSlice({
     setUser(state, action: PayloadAction<{ user: AuthState['user']; token: string }>) {
       state.user = action.payload.user;
       state.token = action.payload.token;
+
+      // Salva no localStorage
+      localStorage.setItem('user', JSON.stringify(action.payload.user));
+      localStorage.setItem('token', action.payload.token);
     },
     clearUser(state) {
       state.user = null;
       state.token = null;
+
+      // Remove do localStorage
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
     },
   },
 });

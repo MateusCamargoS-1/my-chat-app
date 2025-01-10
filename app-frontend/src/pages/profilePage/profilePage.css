@@ -1,0 +1,85 @@
+/* profile.css */
+
+.profile-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-avatar {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 10px;
+  }
+  
+  .profile-name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .profile-card {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-actions {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .settings-button,
+  .logout-button {
+    color: #4caf50;
+    font-size: 1.5rem;
+  }
+  
+  .edit-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .modal-title {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .modal-input {
+    margin-bottom: 15px;
+  }
+  
+  .save-changes-btn {
+    width: 100%;
+    background-color: #4caf50;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 50px;
+    &:hover {
+      background-color: #45a049;
+    }
+  }
+  
