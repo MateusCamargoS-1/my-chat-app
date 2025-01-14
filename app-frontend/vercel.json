@@ -1,8 +1,9 @@
 {
+    "version": 2,
     "builds": [
       {
-        "src": "src/main.tsx",
-        "use": "@vercel/node"
+        "src": "build/**/*",
+        "use": "@vercel/static"
       }
     ],
     "routes": [
