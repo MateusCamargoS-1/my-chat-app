@@ -7,13 +7,11 @@ import {
   Card,
   CardContent,
   Avatar,
-  IconButton,
   Button,
   Modal,
   Box,
   TextField,
 } from "@mui/material";
-import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import EditIcon from "@mui/icons-material/Edit";
 import { setUser } from "../../redux/authSlice";
