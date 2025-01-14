@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import userRoutes from './routes/userRoutes';
 import authMiddleware from './middleware/authMiddleware';
 import protectedRoutes from './routes/protectRoutes';
+import contactRoutes from './routes/contactRoutes';
+import messageRoutes from './routes/messageRoutes';
 
 dotenv.config();
 
@@ -15,6 +17,8 @@ app.use(cors({
 app.use(express.json());
 
 app.use('/api', userRoutes);
+app.use('/api', contactRoutes);
+app.use('/api', messageRoutes);
 app.use('/api/protected', authMiddleware, protectedRoutes);
 
 app.get('/', (req, res) => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
-import { Home, Chat, Explore } from "@mui/icons-material";
+import { Home, AccountBox, Explore } from "@mui/icons-material";
 
 const FooterMenu: React.FC = () => {
   return (
@@ -26,7 +26,7 @@ const FooterMenu: React.FC = () => {
         component={Link}
         to="/contacts"
         label="Contatos"
-        icon={<Chat />}
+        icon={<AccountBox />}
       />
       <BottomNavigationAction
         component={Link}

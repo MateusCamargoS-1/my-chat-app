@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setUser as setAuthUser } from "../../redux/authSlice";
+import { setUser as setAuthUser } from "../../redux/userSlice";  
 import { useNavigate } from "react-router-dom";
 import { TextField, Button, Typography, Box } from "@mui/material";
 import api from "../../services/api";
@@ -17,11 +17,14 @@ const LoginPage = () => {
       const response = await api.post("/login", { email, password });
       const { user, token } = response.data.data;
 
-      dispatch(setAuthUser({ user, token }));
+      // Armazenar os dados no Redux
+      dispatch(setAuthUser({ id: user.id, name: user.name, email: user.email, token }));
 
+      // Persistir os dados no localStorage
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("token", token);
 
+      // Redirecionar para a página de perfil
       navigate("/profile");
     } catch (error) {
       console.error("Erro ao fazer login", error);

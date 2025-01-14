@@ -1,15 +1,25 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux/store";
-import { Button, Container, Typography, Card, CardContent, Avatar, IconButton } from "@mui/material";
+import {
+  Container,
+  Typography,
+  Card,
+  CardContent,
+  Avatar,
+  IconButton,
+  Button,
+  Modal,
+  Box,
+  TextField,
+} from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
-import Modal from "@mui/material/Modal";
-import TextField from "@mui/material/TextField";
+import EditIcon from "@mui/icons-material/Edit";
 import { setUser } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import FooterMenu from "../../components/FooterMenu";
-import './profilePage.css';
+import "./profilePage.css";
 
 const ProfilePage: React.FC = () => {
   const { user } = useSelector((state: RootState) => state.auth);
@@ -18,7 +28,7 @@ const ProfilePage: React.FC = () => {
 
   const [openModal, setOpenModal] = useState(false);
   const [editData, setEditData] = useState({
-    id: user?.id || 0, 
+    id: user?.id || 0,
     name: user?.name || "",
     email: user?.email || "",
     location: user?.location || "",
@@ -49,31 +59,79 @@ const ProfilePage: React.FC = () => {
   }
 
   return (
-    <Container className="profile-container">
-      <div className="profile-header">
-        <Avatar alt="Profile Picture" className="profile-avatar" />
-        <Typography variant="h4" className="profile-name">{user.name}</Typography>
-      </div>
+    <Container className="profile-container" maxWidth="sm">
+      {/* Header */}
+      <Box textAlign="center" mt={4}>
+        <Avatar
+          alt={user.name}
+          sx={{
+            width: 80,
+            height: 80,
+            margin: "auto",
+            fontSize: 32,
+            bgcolor: "primary.main",
+          }}
+        >
+          {user.name.charAt(0)}
+        </Avatar>
+        <Typography variant="h5" mt={2} fontWeight="bold">
+          {user.name}
+        </Typography>
+        <Typography variant="body2" color="textSecondary">
+          {user.email}
+        </Typography>
+      </Box>
 
-      <Card className="profile-card">
-        <CardContent>
-          <Typography variant="body1"><strong>Email:</strong> {user.email}</Typography>
-          <Typography variant="body1"><strong>Localização:</strong> {user.location}</Typography>
-        </CardContent>
-      </Card>
+      {/* Info Cards */}
+      <Box mt={4}>
+        <Card elevation={3} sx={{ mb: 2 }}>
+          <CardContent>
+            <Typography variant="h6" fontWeight="bold">
+              Localização
+            </Typography>
+            <Typography>{user.location || "Não informado"}</Typography>
+          </CardContent>
+        </Card>
+        <Button
+          variant="contained"
+          startIcon={<EditIcon />}
+          fullWidth
+          onClick={() => setOpenModal(true)}
+        >
+          Editar Perfil
+        </Button>
+      </Box>
 
-      <div className="profile-actions">
-        <IconButton onClick={() => setOpenModal(true)} className="settings-button">
-          <SettingsIcon />
-        </IconButton>
-        <IconButton onClick={handleLogout} className="logout-button">
-          <LogoutIcon />
-        </IconButton>
-      </div>
+      {/* Logout Button */}
+      <Box mt={2} textAlign="center">
+        <Button
+          variant="outlined"
+          startIcon={<LogoutIcon />}
+          color="error"
+          onClick={handleLogout}
+        >
+          Logout
+        </Button>
+      </Box>
 
-      <Modal open={openModal} onClose={() => setOpenModal(false)} className="edit-modal">
-        <div className="modal-content">
-          <Typography variant="h6" className="modal-title">Editar Perfil</Typography>
+      {/* Edit Modal */}
+      <Modal open={openModal} onClose={() => setOpenModal(false)}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "90%",
+            bgcolor: "background.paper",
+            borderRadius: 2,
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          <Typography variant="h6" mb={2}>
+            Editar Perfil
+          </Typography>
           <TextField
             label="Nome"
             variant="outlined"
@@ -81,7 +139,7 @@ const ProfilePage: React.FC = () => {
             name="name"
             value={editData.name}
             onChange={handleChange}
-            className="modal-input"
+            margin="normal"
           />
           <TextField
             label="Email"
@@ -90,7 +148,7 @@ const ProfilePage: React.FC = () => {
             name="email"
             value={editData.email}
             onChange={handleChange}
-            className="modal-input"
+            margin="normal"
           />
           <TextField
             label="Localização"
@@ -99,23 +157,31 @@ const ProfilePage: React.FC = () => {
             name="location"
             value={editData.location}
             onChange={handleChange}
-            className="modal-input"
+            margin="normal"
           />
           <TextField
             label="Nova Senha"
+            type="password"
             variant="outlined"
             fullWidth
-            type="password"
             name="password"
             value={editData.password}
             onChange={handleChange}
-            className="modal-input"
+            margin="normal"
           />
-          <Button variant="contained" onClick={handleSaveChanges} className="save-changes-btn">
-            Salvar Alterações
-          </Button>
-        </div>
+          <Box mt={3} textAlign="right">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleSaveChanges}
+            >
+              Salvar Alterações
+            </Button>
+          </Box>
+        </Box>
       </Modal>
+
+      {/* Footer Menu */}
       <FooterMenu />
     </Container>
   );

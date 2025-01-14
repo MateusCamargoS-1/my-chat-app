@@ -30,10 +30,10 @@ class UserController {
     }
   }
 
-  static async getUserById(req: Request, res: Response): Promise<void> {
-    const { userId } = req.params;
+  static async getUserByEmail(req: Request, res: Response): Promise<void> {
+    const { userEmail } = req.params;
     try {
-      const user = await UserService.getUserById(Number(userId));
+      const user = await UserService.getUserByEmail(userEmail);
       if (!user) {
         if (!res.headersSent) {
           res.status(404).json({ message: "Usuário não encontrado" });

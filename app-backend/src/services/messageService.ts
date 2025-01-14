@@ -11,6 +11,15 @@ class MessageService {
     }
   }
 
+  static async getMessagesByContact(userId: number, contactId: number): Promise<Message[]> {
+    try {
+      const messages = await MessageModel.getMessagesByContact(userId, contactId);
+      return messages;
+    } catch (error) {
+      throw new Error('Erro ao buscar mensagens do contato: ' + error);
+    }
+  }
+
   static async getMessagesSentByUser(userId: number): Promise<Message[]> {
     try {
       const messages = await MessageModel.getMessagesSentByUser(userId);

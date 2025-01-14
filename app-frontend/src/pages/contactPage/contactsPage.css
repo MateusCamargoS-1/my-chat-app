@@ -1,0 +1,23 @@
+.contacts-container {
+  padding-bottom: 80px;
+}
+
+.loading-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.contact-item {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.add-button {
+  position: fixed !important;
+  bottom: 80px !important;
+  right: 16px !important;
+}

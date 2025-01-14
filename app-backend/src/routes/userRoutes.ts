@@ -11,6 +11,6 @@ router.post('/login', UserController.login);
 
 router.get('/users', authMiddleware, UserController.getAllUsers);
 
-router.get('/users/:userId', authMiddleware, UserController.getUserById);
+router.get('/users/:userEmail', authMiddleware, UserController.getUserByEmail);
 
 export default router;

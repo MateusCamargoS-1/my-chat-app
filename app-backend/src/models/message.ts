@@ -18,6 +18,23 @@ class MessageModel {
     }
   }
 
+  static async getMessagesByContact(userId: number, contactId: number): Promise<Message[]> {
+    try {
+      const messages = await prisma.message.findMany({
+        where: {
+          OR: [
+            { senderId: userId, receiverId: contactId },
+            { senderId: contactId, receiverId: userId },
+          ],
+        },
+      });
+      return messages;
+    } catch (error) {
+      console.error('Erro ao buscar mensagens do contato:', error);
+      throw new Error('Erro ao buscar mensagens do contato');
+    }
+  }
+
   static async getMessagesSentByUser(userId: number): Promise<Message[]> {
     try {
       const messages = await prisma.message.findMany({

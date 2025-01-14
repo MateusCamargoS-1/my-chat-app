@@ -12,6 +12,17 @@ class MessageController {
     }
   }
 
+  static async getMessagesByContact(req: Request, res: Response): Promise<void> {
+    const { userId, contactId } = req.params;
+
+    try {
+      const messages = await MessageService.getMessagesByContact(Number(userId), Number(contactId));
+      res.status(200).json(messages);
+    } catch (error) {
+      res.status(500).json({ message: error });
+    }
+  }
+
   static async getMessagesSentByUser(req: Request, res: Response): Promise<void> {
     const { userId } = req.params;
     try {

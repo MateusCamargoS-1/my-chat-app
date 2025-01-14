@@ -7,6 +7,8 @@ import SignupPage from "./pages/signupPage/SignupPage";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 import { Navigate } from "react-router-dom";
+import "./styles/globalStyle.css";
+import ChatPage from "./pages/chatPage/ChatPage";
 
 const App = () => {
   const { token } = useSelector((state: RootState) => state.auth);
@@ -23,6 +25,10 @@ const App = () => {
         <Route
           path="/contacts"
           element={token ? <ContactsPage /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/chat/:contactId"
+          element={token ? <ChatPage /> : <Navigate to="/login" />}
         />
         <Route
           path="/explore"
